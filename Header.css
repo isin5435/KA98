@@ -6,10 +6,23 @@
    position: sticky;
    top: 0;
    z-index: 100;
-   text-align: center;
+   text-align: left;
+}
+
+.row{
+    display: flex;
+    text-align: center;
+}
+
+.col-md-3{
+    margin-left: 20px;
 }
 
 .home__image{
     width: 100%;
     height: auto;
+}
+
+.loginbtn{
+    margin-left: 20px;
 }

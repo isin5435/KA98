@@ -5,8 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Words</title>
     <link rel="stylesheet" href="Word.css" />
+    <link rel="stylesheet" href="Header.css" />
+    <link rel="stylesheet" href="login.css" />
   </head>
   <body>
+    <div class="header">
+      <div class="row">
+        <div class="col-md-3">List</div>
+        <div class="col-md-3">search</div>
+        <div class="col-md-3">game</div>
+        <div class="col-md-3">text</div>
+        <button class="loginbtn" onclick="openPopup()">Login</button>
+      </div>
+    </div>
+
+    <div id="popup" class="popup-overlay">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2>Log in to GRE Study</h2>
+        <form>
+          <input type="text" placeholder="Username" />
+          <input type="password" placeholder="Password" />
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+    </div>
+
     <h1 class="top">Word</h1>
 
     <div class="box">
@@ -56,3 +80,5 @@
     </div>
   </body>
 </html>
+
+<script src="login.js"></script>
