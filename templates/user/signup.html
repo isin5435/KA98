@@ -14,9 +14,8 @@
     <div class = "box">
         <h2 class = describe>Create Account</h2>
     
-        <form method="post" action="{% url 'user:signup' %}" class="member">
+        <form method="post" action="{% url 'signup' %}" class="member">
             {% csrf_token %}
-            {% include "form_errors.html" %}
     
             <div class="field">
                 <b>Username*</b>
@@ -35,7 +34,7 @@
                 <span class="placehold-text"><input type="Email" name="email" id="email" value="{{form.email.value|default_if_none:''}}"></span>
             </div>
         
-            <button type="submit" class="submit" value="Sign-up" id="signup">
+            <button type="submit" class="submit" value="Sign-up" id="signup">Sign-up</button>
     
         </div>
     </div>
