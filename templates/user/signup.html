@@ -14,24 +14,27 @@
     <div class = "box">
         <h2 class = describe>Create Account</h2>
     
-        <div class="member">
+        <form method="post" action="{% url 'signup' %}" class="member">
+            {% csrf_token %}
     
             <div class="field">
                 <b>Username*</b>
-                <span class="placehold-text"><input type="text"></span>
+                <span class="placehold-text">
+                    <input type="text" name="username" id="username" value="{{form.username.value|default_if_none:''}}">
+                </span>
             </div>
         
             <div class="field">
                 <b>Password*</b>
-                <span class="placehold-text"><input type="password"></span>
+                <span class="placehold-text"><input type="password" name="password" id="password" value="{{form.password.value|default_if_none:''}}"></span>
             </div>
         
             <div class="field">
                 <b>Email*</b>
-                <span class="placehold-text"><input type="Email"></span>
+                <span class="placehold-text"><input type="Email" name="email" id="email" value="{{form.email.value|default_if_none:''}}"></span>
             </div>
         
-            <input type="submit" class="submit" value="Sign-up">
+            <button type="submit" class="submit" value="Sign-up" id="signup">Sign-up</button>
     
         </div>
     </div>
