@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Words</title>
-    <link rel="stylesheet" href="Word.css" />
-    <link rel="stylesheet" href="Header.css" />
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="{% static 'css/Word.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
   </head>
   <body>
     <div class="header">
@@ -23,11 +24,7 @@
       <div class="popup-content">
         <span class="close-btn" onclick="closePopup()">&times;</span>
         <h2>Log in to GRE Study</h2>
-        <form>
-          <input type="text" placeholder="Username" />
-          <input type="password" placeholder="Password" />
-          <input type="submit" value="Login" />
-        </form>
+        {% include 'Project/login.html' %}
       </div>
     </div>
 
@@ -81,4 +78,4 @@
   </body>
 </html>
 
-<script src="login.js"></script>
+<script src="{% static 'js/login.js' %}"></script>
