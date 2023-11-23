@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="Header.css">
-    <link rel="stylesheet" href="login.css" />
-
+    <title>Chather</title>
+    <link rel="stylesheet" href="{% static 'css/Header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    
 </head>
-<body>  
+<body>
     <div class = "header">
         <div class = "row">
                 <div class = "col-md-3">
@@ -43,13 +44,26 @@
     </div>
 
 
-    <div class = "home"> 
+    <div class = "background">
 
-        <div class = "home__container">
-            <img class ="home__image" src="https://news.asu.edu/sites/default/files/20220202tempecampuschartersign_050.jpg" alt=""/>
+        <div class = "chapter1">
+            <img class ="chapter" src="https://cdn-icons-png.flaticon.com/512/5453/5453718.png" alt=""/>
+            chater1
+        </div>
+        <div class = "chapter2">
+            <img class ="chapter" src="https://cdn-icons-png.flaticon.com/512/5453/5453718.png" alt=""/>
+            chater2
+        </div>
+        <div class = "chapter3">
+            <img class ="chapter" src="https://cdn-icons-png.flaticon.com/512/5453/5453718.png" alt=""/>
+            chater3
+        </div>
+        <div class = "chapter4">
+            <img class ="chapter" src="https://cdn-icons-png.flaticon.com/512/5453/5453718.png" alt=""/>
+            chater4
         </div>
     </div>
 </body>
 </html>
 
-<script src="login.js"></script>
+<script src="{% static 'js/login.js' %}"></script>
