@@ -9,10 +9,10 @@ def signup(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
+            raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)  # 사용자 인증
             login(request, user)  # 로그인
-            return redirect('signin')
+            return redirect('home')
     else:
         form = UserForm()
     return render(request, 'user/signup.html', {'form': form})
