@@ -11,5 +11,5 @@ class Chapter(APIView):
         return render(request, 'Project/chapter.html')
 
 class Word(APIView):
-    def get(self, request):
+    def get(self,request):
         return render(request, 'Project/Word.html')
