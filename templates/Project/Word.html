@@ -24,61 +24,33 @@
       <div class="popup-content">
         <span class="close-btn" onclick="closePopup()">&times;</span>
         <h2>Log in to GRE Study</h2>
-        <form>
-          <input type="text" placeholder="Username" />
-          <input type="password" placeholder="Password" />
-          <input type="submit" value="Login" />
-        </form>
+        {% include 'Project/login.html' %}
       </div>
     </div>
 
     <h1 class="top">Word</h1>
 
-    <div class="box">
-      <div class="words">
-        <strong class="word">Apple</strong>
-        <!-- 단어 변수 들어가야할자리-->
-        <strong class="diacritic">/ˈap(ə)l/</strong>
-      </div>
-      <p class="definition">the tree which bears apples.</p>
-      <!-- 단어 뜻 변수 들어가야할자리-->
-      <p class="example">I eat apple for lunch.</p>
-      <!-- 단어 example 변수 들어갈자리-->
-      <button class="add">단어장추가</button>
-    </div>
 
+    {% for word in words %} 
     <div class="box">
       <div class="words">
-        <strong class="word">Banana</strong>
+        <strong class="word">
+            {{ word.word }}<br/>
+        </strong>
         <!-- 단어 변수 들어가야할자리-->
-        <strong class="diacritic">/bəˈnanə/</strong>
+        <strong class="diacritic">{{ word.pronunciation }}</strong>
       </div>
-      <p class="definition">
-        a long curved fruit which grows in clusters and has soft pulpy flesh and
-        yellow skin when ripe.
-      </p>
+      <p class="definition">{{ word.definition }}</p>
       <!-- 단어 뜻 변수 들어가야할자리-->
-      <p class="example">banana is yellow.</p>
+      <p class="example">{{ word.example }}</p>
       <!-- 단어 example 변수 들어갈자리-->
-      <button class="add">단어장추가</button>
+      <form method="post" action="{% url 'transfer_vocabulary' %}">
+        {% csrf_token %}
+        <button type="submit">Transfer Vocabulary</button>
+      </form>
     </div>
+    {% endfor %}
 
-    <div class="box">
-      <div class="words">
-        <strong class="word">Cat</strong>
-        <!-- 단어 변수 들어가야할자리-->
-        <strong class="diacritic">/kat/</strong>
-      </div>
-      <p class="definition">
-        a small domesticated carnivorous mammal with soft fur, a short snout,
-        and retractable claws. It is widely kept as a pet or for catching mice,
-        and many breeds have been developed.
-      </p>
-      <!-- 단어 뜻 변수 들어가야할자리-->
-      <p class="example">Cat is cute.</p>
-      <!-- 단어 example 변수 들어갈자리-->
-      <button class="add">단어장추가</button>
-    </div>
   </body>
 </html>
 

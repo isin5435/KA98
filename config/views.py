@@ -4,4 +4,12 @@ from rest_framework.views import APIView
 
 class Main(APIView):
     def get(self, request):
+        return render(request, 'Project/Home.html')
+
+class Chapter(APIView):
+    def get(self, request):
+        return render(request, 'Project/chapter.html')
+
+class Word(APIView):
+    def get(self,request):
         return render(request, 'Project/Word.html')

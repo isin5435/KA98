@@ -64,4 +64,6 @@ body{
 
 .submit{
     cursor: pointer;
+    background-color: #2db400;
+    color: #fff;
 }
