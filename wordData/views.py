@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import Word, DestinationVocabulary
+from .models import Word, UserVocabulary
 from rest_framework.views import APIView
 from django.shortcuts import redirect
-
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -22,14 +22,18 @@ class WordView(APIView):
 def transfer_vocabulary(request):
     if request.method == 'POST':
         vocabularies = Word.objects.all()
-
-        for vocab in vocabularies:
-            DestinationVocabulary.objects.create(
-                word=vocab.word,
-                pronunciation=vocab.pronunciation,
-                definition=vocab.definition,
-                example=vocab.example
-            )
+        users = User.objects.all()
+        for user in users:
+            for vocab in vocabularies:
+                UserVocabulary.objects.create(
+                    user=user,  # Assuming 'user' is an instance of the User model
+                    vocabulary=vocab  # Assuming 'vocab' is an instance of the Vocabulary model
+                )
         return redirect('Project/Home.html')
+    return redirect('Project/Home.html') 
 
-    return redirect('Project/Home.html')    
+
+def userWordlist(request):
+    userWords = UserVocabulary.objects.all()
+    context = {'userWords': userWords}
+    return render(request, 'Project/userPage.html', context)
