@@ -30,6 +30,6 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('chapter/', auth_views.LoginView.as_view(template_name='Project/chapter.html'),name='chapter'),
     path('Word/', include('wordData.urls') ,name='question_list'),
-    path('userPage/', auth_views.LoginView.as_view(template_name='Project/userPage.html'), name='home'),
+    path('userPage/', auth_views.LoginView.as_view(template_name='Project/userPage.html'), name='userpage'),
     path('crawl/', include('crawl.urls'))
 ]
