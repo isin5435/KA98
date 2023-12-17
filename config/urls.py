@@ -20,6 +20,7 @@ from .views import Main, Chapter, Word
 from django.contrib.auth import views as auth_views
 from . import views
 from wordData.views import word_list
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('chapter/', auth_views.LoginView.as_view(template_name='Project/chapter.html'),name='chapter'),
     path('Word/', include('wordData.urls') ,name='question_list'),
+    path('crawl/', include('crawl.urls'))
 ]
