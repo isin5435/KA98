@@ -16,7 +16,16 @@
         <div class="col-md-3">search</div>
         <div class="col-md-3">game</div>
         <div class="col-md-3">text</div>
-        <button class="loginbtn" onclick="openPopup()">Login</button>
+        <li class="nav-item"></li>
+          {% if user.is_authenticated %}
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit"> {{user.username}} (로그아웃)</button>
+          </form>
+          {% else %}
+          <button class="loginbtn" onclick="openPopup()">Login</button>
+          {% endif %}
+        </li>
       </div>
     </div>
 
@@ -24,7 +33,25 @@
       <div class="popup-content">
         <span class="close-btn" onclick="closePopup()">&times;</span>
         <h2>Log in to GRE Study</h2>
-        {% include 'Project/login.html' %}
+        <form method="post" action="{%url 'word' %}" id="loginform">
+          {% csrf_token %} 
+          {% include "form_errors.html" %}
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            value = "{{form.username.value|default_if_none:''}}"
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            value = "{{form.password.value|default_if_none:''}}"
+          />
+          <input type="submit" value="Login" />
+        </form>
       </div>
     </div>
 
@@ -35,16 +62,17 @@
     <div class="box">
       <div class="words">
         <strong class="word">
-            {{ word.word }}<br/>
+            {{ word.text }}<br/>
         </strong>
         <!-- 단어 변수 들어가야할자리-->
-        <strong class="diacritic">{{ word.pronunciation }}</strong>
+        <!-- <strong class="diacritic">{{ word.pronunciation }}</strong> -->
       </div>
-      <p class="definition">{{ word.definition }}</p>
+      <p class="definition">{{ word.definitions }}</p>
       <!-- 단어 뜻 변수 들어가야할자리-->
-      <p class="example">{{ word.example }}</p>
+      <!-- <p class="example">{{ word.example }}</p> -->
+      
       <!-- 단어 example 변수 들어갈자리-->
-      <form method="post" action="{% url 'transfer_vocabulary' %}">
+     <!-- <form method="post" action="{% url 'transfer_vocabulary' %}"> -->
         {% csrf_token %}
         <button type="submit">Transfer Vocabulary</button>
       </form>
