@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import Main, Chapter, Word
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LogoutView
 from . import views
 from wordData.views import word_list
 from django.conf import settings
@@ -25,7 +26,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', auth_views.LoginView.as_view(template_name='Project/home.html'), name='home'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('user/', include('user.urls')),
     path('chapter/', auth_views.LoginView.as_view(template_name='Project/chapter.html'),name='chapter'),
     path('Word/', include('wordData.urls') ,name='question_list'),
