@@ -12,5 +12,12 @@ def search_word(request):
     
     response = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}')
     data = response.json()
-    return JsonResponse(data)
+    if isinstance(data, list) and 'meanings' in data[0]:
+        for item in data:
+            meaning = item['meanings'][0]
+            definitions = meaning['definitions'][0]
+            definition = definitions['definition']
+            return JsonResponse({'word': word, 'meaning': definition})
+    else:
+        return JsonResponse({'word': "No word information in DataBase", 'meaning': ""})
 
