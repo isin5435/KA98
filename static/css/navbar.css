@@ -20,6 +20,9 @@ a{
     align-items: center;
     background: #263343;
     padding: 8px 12px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .navbar_logo{
@@ -86,7 +89,7 @@ a{
 }
 
 .navbar_menu button{
-    margin-right: 10px;
+    margin-right: 25px;
     border: 1px solid #bbb;
     border-radius: 8px;
     padding: 10px 12px;
@@ -96,6 +99,7 @@ a{
 .signup{
     background-color: skyblue;
 }
+
 
 @media screen and (max-width:768px){
     .navbar{

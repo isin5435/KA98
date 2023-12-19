@@ -23,8 +23,9 @@
       {% if user.is_authenticated %}
       <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
-        <button class=logoutbtn type="submit"> {{user.username}} (로그아웃)</button>
+        <button class="logoutbtn" type="submit"> {{user.username}} (로그아웃)</button>
       </form>
+      <button class="userpage" onclick="location.href='/userpage'">userpage</button>
       {% else %}
         <button class="loginbtn" onclick="openPopup()">Login</button>
         <button type=button class="signup" onclick="location.href='/user/signup'">Sign up</button>"
