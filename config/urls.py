@@ -22,6 +22,7 @@ from django.contrib.auth.views import LogoutView
 from . import views
 from wordData.views import word_list
 from django.conf import settings
+from search.views import search_word
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('chapter/', auth_views.LoginView.as_view(template_name='Project/chapter.html'),name='chapter'),
     path('Word/', include('wordData.urls') ,name='question_list'),
-    path('userPage/', auth_views.LoginView.as_view(template_name='Project/userPage.html'), name='home'),
-    path('crawl/', include('crawl.urls'))
+    path('userPage/', auth_views.LoginView.as_view(template_name='Project/userPage.html'), name='userpage'),
+    path('crawl/', include('crawl.urls')),
+    path('search_word', search_word, name='search_word'),
 ]
