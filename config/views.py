@@ -13,3 +13,7 @@ class Chapter(APIView):
 class Word(APIView):
     def get(self,request):
         return render(request, 'Project/Word.html')
+
+class Userpage(APIView):
+    def get(self,request):
+        return render(request, 'Project/userPage.html')

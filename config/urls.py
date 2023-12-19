@@ -23,6 +23,7 @@ from . import views
 from wordData.views import word_list
 from django.conf import settings
 from search.views import search_word
+from .views import Userpage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,4 +35,5 @@ urlpatterns = [
     path('userPage/', auth_views.LoginView.as_view(template_name='Project/userPage.html'), name='userpage'),
     path('crawl/', include('crawl.urls')),
     path('search_word', search_word, name='search_word'),
+    path('userpage/',Userpage.as_view(),name='userpage'),
 ]
