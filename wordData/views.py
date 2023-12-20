@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Word, UserVocabulary
 from rest_framework.views import APIView
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
 # Create your views here.
 
@@ -21,19 +21,25 @@ class WordView(APIView):
 
 def transfer_vocabulary(request):
     if request.method == 'POST':
-        vocabularies = Word.objects.all()
-        users = User.objects.all()
-        for user in users:
-            for vocab in vocabularies:
-                UserVocabulary.objects.create(
-                    user=user,  # Assuming 'user' is an instance of the User model
-                    vocabulary=vocab  # Assuming 'vocab' is an instance of the Vocabulary model
-                )
-        return redirect('Project/Home.html')
-    return redirect('Project/Home.html') 
+        word_id = request.POST.get('id')
+        vocabulary = Word.objects.get(id=word_id)
+
+        UserVocabulary.objects.create(
+            user=request.user,  # Assuming 'user' is an instance of the User model
+            vocabulary=vocabulary  # Assuming 'vocab' is an instance of the Vocabulary model
+        )
+        return redirect('word')
+    return redirect('word') 
 
 
-def userWordlist(request):
-    userWords = UserVocabulary.objects.all()
+def userWord_list(request):
+    user_id = request.user.id
+    userWords = UserVocabulary.objects.filter(user_id = user_id)
     context = {'userWords': userWords}
     return render(request, 'Project/userPage.html', context)
+
+
+def delete_word(request, vocab_id):
+    vocab = UserVocabulary.objects.filter( id=vocab_id)  # Adjust the model name as necessary
+    vocab.delete()
+    return redirect('userPage')  # Redirect to the view that shows the list

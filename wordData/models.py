@@ -20,4 +20,5 @@ class UserVocabulary(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vocabulary = models.ForeignKey(Word, on_delete=models.CASCADE)
     added_date= models.DateTimeField(auto_now=True)
-
+    def __int__(self):
+        return self.int

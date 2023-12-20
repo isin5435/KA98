@@ -29,6 +29,7 @@
       </div>
     </div>
 
+    
     <h1 class="top">Word</h1>
 
 
@@ -47,6 +48,7 @@
       <!-- 단어 example 변수 들어갈자리-->
       <form method="post" action="{% url 'transfer_vocabulary' %}">
         {% csrf_token %}
+        <input type="hidden" name="id" value="{{ word.id }}">
         <button type="submit">Transfer Vocabulary</button>
       </form>
     </div>

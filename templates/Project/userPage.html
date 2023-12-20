@@ -1,7 +1,14 @@
+<h1>Son</h1>
+<div class="col-md-3"><a href ='/'>Logo </a></div>
+
 {% if userWords %}
     {% for userVocab in userWords %}
+    <form action="{% url 'delete_word' userVocab.id %}" method="post">
+        {% csrf_token %}
         <h2>{{ userVocab.id }}: {{ userVocab.vocabulary.word }}</h2>
+        <button type="submit">Delete</button>
         <!-- other fields -->
+    </form>   
     {% endfor %}
 {% else %}
     <p>No words found.</p>
