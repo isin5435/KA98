@@ -8,7 +8,7 @@ def search_word(request):
     word = request.GET.get('word')
     result = Words.objects.filter(text=word).first()
     if result:
-        return JsonResponse({'word': result.text, 'meaning': result.definitions})
+        return JsonResponse({'word': result.text, 'meaning': result.definitions, 'show_button':True})
     
     response = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}')
     data = response.json()
@@ -17,7 +17,7 @@ def search_word(request):
             meaning = item['meanings'][0]
             definitions = meaning['definitions'][0]
             definition = definitions['definition']
-            return JsonResponse({'word': word, 'meaning': definition})
+            return JsonResponse({'word': word, 'meaning': definition, 'show_button':True})
     else:
-        return JsonResponse({'word': "No word information in DataBase", 'meaning': ""})
+        return JsonResponse({'word': "No word information in DataBase", 'meaning': "", 'show_button':False})
 
