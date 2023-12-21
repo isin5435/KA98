@@ -1,10 +1,32 @@
-<!--
-{% if userWords %}
-    {% for userVocab in userWords %}
-        <h2>{{ userVocab.id }}: {{ userVocab.vocabulary.word }}</h2>
-    {% endfor %}
-{% else %}
-    <p>No words found.</p>
-{% endif %}
--->
-Hi username
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GRE Word Study</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+  </head>
+ <body>
+    {% include "Project/navbar.html" %}
+    <h2>{{user.username}}</h2>
+    {% if userWords %}
+        {% for userVocab in userWords %}
+        <form action="{% url 'delete_word' userVocab.id %}" method="post">
+            {% csrf_token %}
+            <h2>{{ userVocab.id }}: {{ userVocab.vocabulary.word }}</h2>
+            <button type="submit">Delete</button>
+            <!-- other fields -->
+        </form>   
+        {% endfor %}
+    {% else %}
+        <p>No words found.</p>
+    {% endif %}
+    {% include "Project/search.html" %}
+
+</body>
+</html>
+<script src="{% static 'js/search.js' %}"></script>

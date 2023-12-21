@@ -12,7 +12,7 @@
 
     <div class="search">
       <input type="text" placeholder="Search Word!">
-      <input type="image" onclick="openwordPopup()" src = "https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" alt="submit">
+      <input type="image" onclick=openwordPopup() src = "https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" alt="submit">
     </div>
 
     <ul class="navbar_menu">
@@ -25,7 +25,7 @@
         {% csrf_token %}
         <button class="logoutbtn" type="submit"> {{user.username}} (로그아웃)</button>
       </form>
-      <button class="userpage" onclick="location.href='/userpage'">userpage</button>
+        <button class="userpage" onclick="location.href='/userPage'">userpage</button>
       {% else %}
         <button class="loginbtn" onclick="openPopup()">Login</button>
         <button type=button class="signup" onclick="location.href='/user/signup'">Sign up</button>"
