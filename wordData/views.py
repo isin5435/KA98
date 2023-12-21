@@ -22,7 +22,7 @@ class WordLoginView(LoginView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['words'] = Words.objects.all()
+        context['words'] = Word.objects.all()
         return context
     
 
