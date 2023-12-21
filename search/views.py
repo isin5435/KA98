@@ -6,9 +6,9 @@ from crawl.models import Words
 
 def search_word(request):
     word = request.GET.get('word')
-    result = Words.objects.filter(text=word).first()
+    result = Words.objects.filter(word=word).first()
     if result:
-        return JsonResponse({'word': result.text, 'meaning': result.definitions, 'show_button':True})
+        return JsonResponse({'word': result.word, 'meaning': result.definition, 'show_button':True})
     
     response = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}')
     data = response.json()

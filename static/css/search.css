@@ -11,3 +11,10 @@
     opacity: 0;
     transition: visibility 0s, opacity 0.3s ease;
 }
+
+.myButton{
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 50px;
+}

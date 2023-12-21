@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-
+from django.shortcuts import redirect
+from functools import wraps
 
 class Main(APIView):
     def get(self, request):
@@ -13,7 +14,10 @@ class Chapter(APIView):
 class Word(APIView):
     def get(self,request):
         return render(request, 'Project/Word.html')
-
-class Userpage(APIView):
-    def get(self,request):
-        return render(request, 'Project/userPage.html')
+    
+def login_required_or_redirect_home(view_func):
+    def _wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('home')  # You need to define HOME_URL in your settings
+        return view_func(request, *args, **kwargs)
+    return _wrapped_view
