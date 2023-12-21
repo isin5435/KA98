@@ -1,0 +1,122 @@
+:root{
+    --text-color: #f0f4f5;
+    --background-color: #263343;
+    --accent-color: #d49466;
+}
+
+body{
+    margin: 0px;
+    font-family: 'Open sans';
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #263343;
+    padding: 8px 12px;
+}
+
+.navbar_logo{
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar_logo a{
+    display: flex;
+    align-items: center;
+}
+
+.navbar_logo img {
+    height: 60px;
+    width: auto;
+    margin-right: 15px;
+}
+
+.search{
+    position: relative;
+    width: 1000px;
+    display: flex;
+}
+
+.search input[type="text"]{
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px 0 0 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    padding-right: 40px;
+    flex-grow: 1;
+}
+
+.search input[type="image"]{
+    position: relative;
+    width: 30px;
+    height: auto;
+    border-radius: 0 8px 8px 0;
+    background-color: skyblue;
+    padding: 5px;
+}
+
+
+.navbar_menu{
+    display: flex;
+    list-style: none;
+    padding-left: 0px;
+}
+
+
+.navbar_menu li{
+    padding: 8px 12px;
+    color: white;
+    margin-right: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.navbar_menu :hover{
+    background: #d49466;
+    border-radius: 4px;
+}
+
+.navbar_menu button{
+    margin-right: 10px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-weight: bold;
+}
+
+.signup{
+    background-color: skyblue;
+}
+
+@media screen and (max-width:768px){
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+
+    .navbar_menu{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar_menu li{
+        width: 100%;
+        text-align: center;
+    }
+
+
+    
+}
+

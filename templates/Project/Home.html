@@ -1,3 +1,4 @@
+<!-- Home.html -->
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -5,26 +6,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/Header.css' %}" />
+    <title>GRE Word Study</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/login.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script> 
+
   </head>
   <body>
-    <div class="header">
-      <div class="row">
-        <div class="col-md-3">List</div>
-        <div class="col-md-3">search</div>
-        <div class="col-md-3">game</div>
-        <div class="col-md-3">text</div>
-        <li class="nav-item"></li>
-          {% if user.is_authenticated %}
-          <a class="logout" href="{%url 'logout' %}">{{user.username}}(로그아웃)</a>
-          {% else %}
-          <button class="loginbtn" onclick="openPopup()">Login</button>
-          {% endif %}
-        </li>
-      </div>
-    </div>
+
+    {% include "Project/navbar.html" %}
 
     <div id="popup" class="popup-overlay">
       <div class="popup-content">
@@ -34,7 +28,7 @@
           {% csrf_token %} 
           {% include "form_errors.html" %}
           <input
-            type="text"
+            type="text" 
             id="username"
             name="username"
             placeholder="Username"
@@ -51,6 +45,7 @@
         </form>
       </div>
     </div>
+    {% include "Project/search.html" %}
 
     <div class="home">
       <div class="home__container">
@@ -61,7 +56,5 @@
         />
       </div>
     </div>
-  </body>
+  </body> 
 </html>
-
-<script src="{% static 'js/login.js' %}"></script>

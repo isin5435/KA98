@@ -6,38 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chather</title>
-    <link rel="stylesheet" href="{% static 'css/Header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
 </head>
 <body>
-    <div class = "header">
-        <div class = "row">
-                <div class = "col-md-3">
-                List
-                </div>
-                <div class = "col-md-3">
-                search
-                </div>
-                <div class = "col-md-3">
-                game
-                </div>
-                <div class = "col-md-3">
-                text
-                </div>
-                <button class = loginbtn onclick="openPopup()">Login</button>
+  {% include "Project/navbar.html" %}
+  
+      <div id="popup" class="popup-overlay">
+        <div class="popup-content">
+          <span class="close-btn" onclick="closePopup()">&times;</span>
+          <h2>Log in to GRE Study</h2>
+          <form method="post" action="{%url 'chapter' %}" id="loginform">
+            {% csrf_token %} 
+            {% include "form_errors.html" %}
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Username"
+              value = "{{form.username.value|default_if_none:''}}"
+            />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              value = "{{form.password.value|default_if_none:''}}"
+            />
+            <input type="submit" value="Login" />
+          </form>
         </div>
-    </div>
+      </div>
 
-    <div id="popup" class = popup-overlay>
-        <div class= popup-content>
-            <span class="close-btn" onclick="closePopup()">&times;</span>
-            <h2>Log in to GRE Study</h2>
-            {% include 'Project/login.html' %}
-
-        </div>
-
-    </div>
+      {% include "Project/search.html" %}
 
 
     <div class = "background">
@@ -63,3 +65,4 @@
 </html>
 
 <script src="{% static 'js/login.js' %}"></script>
+<script src="{% static 'js/search.js' %}"></script>

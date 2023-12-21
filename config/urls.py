@@ -16,16 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import Main, Chapter, Word
+from .views import Main, Chapter, Word, login_required_or_redirect_home
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LogoutView
 from . import views
 from wordData.views import word_list
+from wordData.views import userWord_list
+from django.conf import settings
+from search.views import search_word
+#from .views import Userpage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', auth_views.LoginView.as_view(template_name='Project/home.html'), name='home'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('user/', include('user.urls')),
     path('chapter/', auth_views.LoginView.as_view(template_name='Project/chapter.html'),name='chapter'),
     path('Word/', include('wordData.urls') ,name='question_list'),
+    path('crawl/', include('crawl.urls')),
+    path('search_word', search_word, name='search_word'),
+    path('userPage/', login_required_or_redirect_home(userWord_list), name = 'userPage'),
 ]
