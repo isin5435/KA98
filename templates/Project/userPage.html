@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GRE Word Study</title>
+    <link rel="stylesheet" href="{% static 'css/userpage.css' %}" />
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
     <link rel="stylesheet" href="{% static 'css/search.css' %}" />
@@ -12,19 +13,35 @@
   </head>
  <body>
     {% include "Project/navbar.html" %}
-    <h2>{{user.username}}</h2>
-    {% if userWords %}
-        {% for userVocab in userWords %}
-        <form action="{% url 'delete_word' userVocab.id %}" method="post">
-            {% csrf_token %}
-            <h2>{{ userVocab.id }}: {{ userVocab.vocabulary.word }}</h2>
-            <button type="submit">Delete</button>
-            <!-- other fields -->
-        </form>   
-        {% endfor %}
-    {% else %}
-        <p>No words found.</p>
-    {% endif %}
+    <div id="app">
+        <h2 id="username">{{user.username}}'s word book</h2>
+        {% if userWords %}
+        <ol>
+            {% for userVocab in userWords %}
+            <form action="{% url 'delete_word' userVocab.id %}" method="post">
+                {% csrf_token %}
+                <div id="boxs">
+                    <p>
+                        <h2>
+                            <li class="vocab-word">
+                                {{ userVocab.vocabulary.word }}
+                            </li>
+                        </h2>
+                        <h3 class="vocab-definition">
+                        {{userVocab.vocabulary.definition}}
+                        </h3>
+                    </p>
+                    <button type="submit" class="delete">Delete</button>
+                </div>
+                
+                <!-- other fields -->
+            </form>   
+            {% endfor %}
+        </ol>
+        {% else %}
+            <p>No words found.</p>
+        {% endif %}
+    </div>
     {% include "Project/search.html" %}
 
 </body>

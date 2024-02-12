@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'css/game.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search.css' %}" />
+    <script src="{% static 'js/login.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+    <script src="{% static 'js/game.js' %}" defer></script>
+  </head>
+  <body>
+    {% include "Project/navbar.html" %}
+    <div class="move-down">
+      <button class="start-button" id="start-button">Game Start</button>
+      <div class = "games">
+        <h1 id="BINGO">G R E Word BINGO!</h1>
+        <div class="container">
+          <table id="tblBingo"></table>
+        </div>
+
+        <div class="definition" id="definition"></div>
+        <div id="progressBarContainer">
+          <div id="progressBar"></div>
+        </div>
+        <div class="timer" id="timer"></div>
+        <div class="letter-div">
+          <table id="tblLetter">
+            <tr>
+              <td class="letters-bingo">B</td>
+              <td class="letters-bingo">I</td>
+              <td class="letters-bingo">N</td>
+              <td class="letters-bingo">G</td>
+              <td class="letters-bingo">O</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  {% include "Project/search.html" %}
+  </body>
+</html>

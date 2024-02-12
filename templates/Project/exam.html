@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/exam.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search.css' %}" />
+    <title>Exam</title>
+  </head>
+  <body>
+    {% include "Project/navbar.html" %}
+    <div id="beforetest" class="beforetest">
+      <button id="startbutton" onclick="getNextword()">Begin Test</button>
+    </div>
+    <div id="testArea" class="testArea" style="display: none">
+      <div class="innerContainer" id="innerContainer">
+        <div id="definition"></div>
+        <input type="text" id="answer" />
+        <button id="submit" onclick="submitAnswer()">Submit</button>
+        <div id="result"></div>
+      </div>
+    </div>
+    {% csrf_token %} {% include "Project/search.html" %}
+  </body>
+  <script>
+
+    document.getElementById('startbutton').addEventListener('click', function(){
+        document.getElementById('testArea').style.display='block';
+        document.getElementById('startbutton').style.display='none';
+        document.getElementById('beforetest').style.display='none';
+    });
+    var wordId = {{word.id}};
+    var count = 0;
+    var maxCount = 10;
+    var pass = 0;
+
+    function submitAnswer()
+    {
+        let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        var answer = document.getElementById('answer').value;
+        fetch('/test_word/'+wordId+'/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': csrfToken
+            },
+            body: 'answer=' + encodeURIComponent(answer),
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('result').innerText = data.result;
+            if(data.result == 'Correct!')
+            {
+                pass++;
+            }
+            count++;
+            if(count < maxCount)
+            {
+                getNextword();
+            }
+            else
+            {
+                Result();
+            }
+        });
+    }
+
+    function getNextword()
+    {
+        fetch('/random_word/')
+            .then(response => response.json())
+            .then(data => {
+                wordId = data.id;
+                document.getElementById('definition').innerText = data.definition;
+            });
+    }
+
+    function reset()
+    {
+        document.getElementById('definition').style.fontWeight="normal";
+        document.getElementById('definition').style.fontSize="20px";
+        document.getElementById('submit').style.visibility="visible";
+        document.getElementById('answer').style.visibility="visible";
+        let TestArea = document.getElementById('innerContainer');
+        let startagain = document.getElementById('startagain');
+        pass = 0;
+
+        if(startagain){
+            TestArea.removeChild(startagain);
+        }
+
+    }
+
+    function Result()
+    {
+        document.getElementById('definition').innerText = "Score : "+pass + " / 10";
+        document.getElementById('definition').style.fontWeight="bold";
+        document.getElementById('definition').style.fontSize="25px";
+        document.getElementById('result').innerText = "";
+        document.getElementById('submit').style.visibility="hidden";
+        document.getElementById('answer').style.visibility="hidden";
+
+        let startagain = document.createElement('button');
+        startagain.id = "startagain";
+        startagain.innerText = "Start AGAIN";
+
+        let TestArea = document.getElementById('innerContainer');
+
+        TestArea.appendChild(startagain);
+
+        startagain.addEventListener('click', function() {
+            reset();
+            getNextword();
+        });
+    }
+  </script>
+  <script src="{% static 'js/search.js' %}"></script>
+</html>

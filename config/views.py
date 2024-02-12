@@ -15,6 +15,10 @@ class Word(APIView):
     def get(self,request):
         return render(request, 'Project/Word.html')
     
+class exam(APIView):
+    def get(self, request):
+        return render(request, 'Project/exam.html')
+    
 def login_required_or_redirect_home(view_func):
     def _wrapped_view(request, *args, **kwargs):
         if not request.user.is_authenticated:

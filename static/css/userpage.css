@@ -1,0 +1,38 @@
+body{
+  background-color:moccasin
+}
+
+ol {
+  list-style-position: inside;
+}
+#app {
+  padding-top: 120px;
+  justify-content: center;
+}
+
+#username {
+  text-align: center;
+}
+
+#boxs {
+  border: 1px solid black;
+  background-color: white;
+}
+
+.vocab-word {
+  font-size: 35px;
+  margin-right: 20px;
+  margin-left: 15px;
+}
+
+.vocab-definition {
+  font-weight: bold;
+  margin-left: 35px;
+}
+
+.delete {
+  margin-left: 32px;
+  height: 30px;
+  width: 70px;
+  margin-bottom: 5px;
+}

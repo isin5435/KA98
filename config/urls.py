@@ -24,6 +24,8 @@ from wordData.views import word_list
 from wordData.views import userWord_list
 from django.conf import settings
 from search.views import search_word
+from .views import exam
+from exam.views import exam, randon_word, test_word
 #from .views import Userpage
 
 urlpatterns = [
@@ -36,4 +38,9 @@ urlpatterns = [
     path('crawl/', include('crawl.urls')),
     path('search_word', search_word, name='search_word'),
     path('userPage/', login_required_or_redirect_home(userWord_list), name = 'userPage'),
+    path('exam/', exam, name='exam'),
+    path('random_word/', randon_word, name='random_word'),
+    path('test_word/<int:word_id>/', test_word, name='test_word'),
+    path('game/',include('game.urls')),
+
 ]

@@ -18,8 +18,8 @@
     <ul class="navbar_menu">
       <li><a href = '/Word'>List</a></li>
       <li><a href = '/chapter'>Chapter</a></li>
-      <li>game</li>
-      <li>text</li>
+      <li><a href = '/game'>game</a></li>
+      <li><a href = '/exam'>test</a></li>
       {% if user.is_authenticated %}
       <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
