@@ -1,3 +1,4 @@
+/* word.css */
 
 .top {
   text-align: center;
@@ -5,8 +6,13 @@
   width: 100%;
 }
 
-body{
-    background-color: #FBFFDC;
+body {
+  background-color: #fbffdc;
+  margin: 0;
+}
+
+#app {
+  padding-top: 80px;
 }
 
 .box {
@@ -34,6 +40,6 @@ body{
   margin-left: 7px;
 }
 
-.example{
-    margin-left: 7px;
+.example {
+  margin-left: 7px;
 }

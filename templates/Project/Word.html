@@ -1,3 +1,4 @@
+<!-- Word.html -->
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -8,7 +9,10 @@
     <link rel="stylesheet" href="{% static 'css/Word.css' %}" />
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+    />
   </head>
   <body>
     {% include "Project/navbar.html" %}
@@ -18,21 +22,20 @@
         <span class="close-btn" onclick="closePopup()">&times;</span>
         <h2>Log in to GRE Study</h2>
         <form method="post" action="{%url 'word' %}" id="loginform">
-          {% csrf_token %} 
-          {% include "form_errors.html" %}
+          {% csrf_token %} {% include "form_errors.html" %}
           <input
             type="text"
             id="username"
             name="username"
             placeholder="Username"
-            value = "{{form.username.value|default_if_none:''}}"
+            value="{{form.username.value|default_if_none:''}}"
           />
           <input
             type="password"
             id="password"
             name="password"
             placeholder="Password"
-            value = "{{form.password.value|default_if_none:''}}"
+            value="{{form.password.value|default_if_none:''}}"
           />
           <input type="submit" value="Login" />
         </form>
@@ -41,31 +44,27 @@
 
     {% include "Project/search.html" %}
 
-    
-    <h1 class="top">Word</h1>
-
-
-    {% for word in words %} 
-    <div class="box">
-      <div class="words">
-        <strong class="word">
-            {{ word.word }}<br/>
-        </strong>
-        <!-- 단어 변수 들어가야할자리-->
-        <!--<strong class="diacritic">{{ word.pronunciation }}</strong> -->
+    <div id="app">
+      <h1 class="top">Word</h1>
+      {% for word in words %}
+      <div class="box">
+        <div class="words">
+          <strong class="word"> {{ word.word }}<br /> </strong>
+          <!-- 단어 변수 들어가야할자리-->
+          <!--<strong class="diacritic">{{ word.pronunciation }}</strong> -->
+        </div>
+        <p class="definition">{{ word.definition }}</p>
+        <!-- 단어 뜻 변수 들어가야할자리-->
+        <!--<p class="example">{{ word.example }}</p> -->
+        <!-- 단어 example 변수 들어갈자리-->
+        <form method="post" action="{% url 'transfer_vocabulary' %}">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ word.id }}" />
+          <button type="submit">Transfer Vocabulary</button>
+        </form>
       </div>
-      <p class="definition">{{ word.definition }}</p>
-      <!-- 단어 뜻 변수 들어가야할자리-->
-      <!--<p class="example">{{ word.example }}</p> -->
-      <!-- 단어 example 변수 들어갈자리-->
-      <form method="post" action="{% url 'transfer_vocabulary' %}">
-        {% csrf_token %}
-        <input type="hidden" name="id" value="{{ word.id }}">
-        <button type="submit">Transfer Vocabulary</button>
-      </form>
+      {% endfor %}
     </div>
-    {% endfor %}
-
   </body>
 </html>
 

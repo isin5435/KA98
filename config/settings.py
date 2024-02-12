@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'user',
     'wordData',
     'rest_framework',
-    'crawl'
+    'crawl',
+    'exam',
+    'game'
 ]
 
 MIDDLEWARE = [
