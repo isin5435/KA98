@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-xm!*sl8tv==md)%6hk0ea6-7ro#&6m89@v88p!#13pbr-uh8-d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    ".us-west-1.compute.amazonaws.com",
+    ".gre-word.shop",
+]
 
 
 # Application definition
