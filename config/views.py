@@ -5,7 +5,7 @@ from functools import wraps
 
 class Main(APIView):
     def get(self, request):
-        return render(request, 'Project/Home.html')
+        return render(request, 'Project/index.html')
 
 class Chapter(APIView):
     def get(self, request):
