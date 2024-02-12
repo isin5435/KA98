@@ -30,7 +30,7 @@ from exam.views import exam, randon_word, test_word
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', auth_views.LoginView.as_view(template_name='Project/home.html'), name='home'),
+    path('', auth_views.LoginView.as_view(template_name='Project/index.html'), name='home'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('user/', include('user.urls')),
     path('chapter/', auth_views.LoginView.as_view(template_name='Project/chapter.html'),name='chapter'),
